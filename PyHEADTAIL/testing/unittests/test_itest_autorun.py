@@ -3,7 +3,7 @@
 @author: Stefan Hegglin
 '''
 
-from __future__ import division
+
 
 import sys, os
 BIN = os.path.dirname(__file__) # ./PyHEADTAIL/testing/unittests/
@@ -48,7 +48,7 @@ class TestAutoRun(unittest.TestCase):
         '''
         try:
             at.run()
-        except Exception, err:
+        except Exception as err:
             self.fail('ApertureNLossesTest threw an exception:\n' + str(err))
 
     def test_detunerstest(self):
@@ -57,7 +57,7 @@ class TestAutoRun(unittest.TestCase):
         '''
         try:
             dt.run()
-        except Exception, err:
+        except Exception as err:
             self.fail('DetunersTest threw an exception:\n' + str(err))
 
     def test_monitortest(self):
@@ -66,7 +66,7 @@ class TestAutoRun(unittest.TestCase):
         '''
         try:
             mt.run()
-        except Exception, err:
+        except Exception as err:
             self.fail('MonitorTest threw an exception:\n' + str(err))
 
     def test_rfqtest(self):
@@ -75,7 +75,7 @@ class TestAutoRun(unittest.TestCase):
         '''
         try:
             rt.run()
-        except Exception, err:
+        except Exception as err:
             self.fail('RFQTest threw an exception:\n' + str(err))
 
     def test_slicingtest(self):
@@ -84,7 +84,7 @@ class TestAutoRun(unittest.TestCase):
         '''
         try:
             st.run()
-        except Exception, err:
+        except Exception as err:
             self.fail('SlicingTest threw an exception:\n' + str(err))
 
     def test_transversetrackingtest(self):
@@ -93,7 +93,7 @@ class TestAutoRun(unittest.TestCase):
         '''
         try:
             ttt.run()
-        except Exception, err:
+        except Exception as err:
             self.fail('TransverseTrackingTest threw an exception:\n' +
                       str(err))
 
@@ -103,7 +103,7 @@ class TestAutoRun(unittest.TestCase):
         '''
         try:
             wt.run()
-        except Exception, err:
+        except Exception as err:
             self.fail('WakeTest threw an exception:\n' +
                     str(err))
 

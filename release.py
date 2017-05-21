@@ -53,7 +53,7 @@ def bumpversion(version, part):
     parts = version.split('.')
     # only integers stored:
     assert all(p.isdigit() for p in parts)
-    major, minor, patch = map(int, parts)
+    major, minor, patch = list(map(int, parts))
     if part == 'major':
         version = '{0}.0.0'.format(major + 1)
     elif part == 'minor':
@@ -83,8 +83,8 @@ def which_part_increases(last_version, new_version):
     new_parts = new_version.split('.')
     # only integers stored:
     assert all(p.isdigit() for p in last_parts + new_parts)
-    lmajor, lminor, lpatch = map(int, last_parts)
-    nmajor, nminor, npatch = map(int, new_parts)
+    lmajor, lminor, lpatch = list(map(int, last_parts))
+    nmajor, nminor, npatch = list(map(int, new_parts))
     if lmajor + 1 == nmajor and nminor == 0 and npatch == 0:
         return 'major'
     elif lmajor == nmajor and lminor + 1 == nminor and npatch == 0:
@@ -115,8 +115,8 @@ def establish_new_version(version_location):
     assert subprocess.call(["git", "add", vpath]) == 0
     assert subprocess.call(
         ["git", "commit", "-m", "release-script: bumping version file."]) == 0
-    print ('*** The new release version has been bumped: PyHEADTAIL v'
-           + release_version)
+    print(('*** The new release version has been bumped: PyHEADTAIL v'
+           + release_version))
     return release_version
 
 def ensure_hub_is_installed():
@@ -248,7 +248,7 @@ def finalise_release():
 
 # ALGORITHM FOR RELEASE PROCESS:
 if __name__ == '__main__':
-    print ('*** Current working directory:\n' + os.getcwd() + '\n')
+    print(('*** Current working directory:\n' + os.getcwd() + '\n'))
     ensure_hub_is_installed()
 
     # are we on a release branch already?

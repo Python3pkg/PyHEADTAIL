@@ -11,7 +11,7 @@ try:
     import pycuda.autoinit
 except ImportError:
     has_pycuda = False
-    print 'No PyCUDA installation found.'
+    print('No PyCUDA installation found.')
 
 from pprint import pprint
 

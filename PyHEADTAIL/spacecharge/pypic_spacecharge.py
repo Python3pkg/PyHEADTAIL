@@ -9,7 +9,7 @@ NB: the (feature/redesign) branch is required for this!
 @date: 18.01.2016
 '''
 
-from __future__ import division
+
 
 import numpy as np
 from scipy.constants import c

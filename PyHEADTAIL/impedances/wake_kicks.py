@@ -6,7 +6,7 @@
        describing the effects of a wake field.
 @copyright CERN
 """
-from __future__ import division
+
 
 import numpy as np
 from scipy.constants import c
@@ -14,7 +14,7 @@ from abc import ABCMeta, abstractmethod
 from ..general import pmath as pm
 from . import Printing
 
-class WakeKick(Printing):
+class WakeKick(Printing, metaclass=ABCMeta):
     """Abstract base class for wake kick classes, like e.g. the
     DipoleWakeKickX.
     Provides the basic and universal methods to calculate the strength
@@ -27,8 +27,6 @@ class WakeKick(Printing):
     the only method to be implemented for a child class inheriting from
     the WakeKick class.
     """
-
-    __metaclass__ = ABCMeta
 
     def __init__(self, wake_function, slicer, n_turns_wake,
                  *args, **kwargs):

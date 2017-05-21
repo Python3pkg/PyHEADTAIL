@@ -2,7 +2,7 @@
 @authors: Adrian Oeftiger
 @date:    17/04/2015
 '''
-from __future__ import division
+
 
 from . import Element, clean_slices
 
@@ -181,10 +181,10 @@ class TransverseGaussianSpaceCharge(Element):
                      (beam.p0 * beam.betagamma * beam.gamma * c))
 
         # Nlambda_i is the line density [Coul/m] for the current slice
-        for s_i, (Nlambda_i, mean_x, mean_y, sig_x, sig_y) in enumerate(zip(
+        for s_i, (Nlambda_i, mean_x, mean_y, sig_x, sig_y) in enumerate(list(zip(
                 slices.lambda_bins(smoothen=False)/slices.slice_widths,
                 slices.mean_x, slices.mean_y,
-                slices.sigma_x, slices.sigma_y)):
+                slices.sigma_x, slices.sigma_y))):
             p_id = slices.particle_indices_of_slice(s_i)
             if len(p_id) == 0:
                 continue

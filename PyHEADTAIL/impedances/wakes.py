@@ -19,7 +19,7 @@ once they have been created).
        originating from different WakeSources.
 @copyright CERN
 """
-from __future__ import division
+
 
 import numpy as np
 from collections import deque
@@ -27,7 +27,7 @@ from scipy.constants import c, physical_constants
 from scipy.interpolate import interp1d
 from abc import ABCMeta, abstractmethod
 
-from wake_kicks import *
+from .wake_kicks import *
 from . import Element, Printing
 
 sin = np.sin
@@ -67,7 +67,7 @@ def check_wake_sampling(bunch, slicer, wakes, beta=1, wake_column=None, bins=Fal
         lgd += ['Bin edges']
     ax2.legend(lgd)
 
-    print '\n--> Resulting number of slices: {:g}'.format(len(ss))
+    print('\n--> Resulting number of slices: {:g}'.format(len(ss)))
 
     return ax1
 
@@ -130,7 +130,7 @@ class WakeField(Element):
         WakeKick instances. """
 
         # Update ages of stored SliceSet instances.
-        for i in xrange(len(self.slice_set_age_deque)):
+        for i in range(len(self.slice_set_age_deque)):
             self.slice_set_age_deque[i] += (
                 bunch.circumference / (bunch.beta * c))
 
@@ -145,10 +145,9 @@ class WakeField(Element):
 
 ''' WakeSource classes. '''
 
-class WakeSource(Printing):
+class WakeSource(Printing, metaclass=ABCMeta):
     """ Abstract base class for wake sources, such as WakeTable,
     Resonator or ResistiveWall. """
-    __metaclass__ = ABCMeta
 
     @abstractmethod
     def get_wake_kicks(self, slicer_mode):
@@ -285,7 +284,7 @@ class WakeTable(WakeSource):
     def _is_provided(self, wake_component):
         """ Check whether wake_component is a valid name and available
         in wake table data. Return 'True' if yes and 'False' if no. """
-        if wake_component in self.wake_table.keys():
+        if wake_component in list(self.wake_table.keys()):
             return True
         else:
             # self.warns(wake_component + ' \n' +

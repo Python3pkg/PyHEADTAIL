@@ -3,7 +3,7 @@
 @author: Stefan Hegglin
 '''
 
-from __future__ import division
+
 
 import sys, os
 BIN = os.path.dirname(__file__) # ./PyHEADTAIL/testing/unittests/

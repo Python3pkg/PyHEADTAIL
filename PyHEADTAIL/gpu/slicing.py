@@ -2,7 +2,7 @@
 @authors: Adrian Oeftiger
 @date:    30/07/2015
 '''
-from __future__ import division
+
 
 import os
 where = os.path.dirname(os.path.abspath(__file__)) + '/'
@@ -20,7 +20,7 @@ from pycuda import cumath
 
 from skcuda.misc import diff
 
-import thrust_interface as thrust
+from . import thrust_interface as thrust
 
 get_sort_perm_int = thrust.get_sort_perm_int
 lower_bound_int = thrust.lower_bound_int

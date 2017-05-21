@@ -5,7 +5,7 @@ import numpy as np
 
 from pycuda import gpuarray
 
-import thrust_interface as thrust
+from . import thrust_interface as thrust
 
 class ParticlesGPU(def_particles.Particles):
     '''Implementation of the Particles with data stored on the GPU.

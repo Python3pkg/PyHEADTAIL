@@ -4,7 +4,7 @@ Context manager classes
 @data 30.09.2015
 '''
 import numpy as np
-import pmath as pm
+from . import pmath as pm
 from ..gpu import gpu_utils
 try:
     import pycuda.gpuarray as gpuarray

@@ -1,4 +1,4 @@
-from __future__ import division
+
 
 import sys, os
 BIN=os.path.expanduser('../../../')
@@ -32,7 +32,7 @@ SynchrotronRadiationLongitudinal = SynchrotronRadiationLongitudinal(
 # ===========================
 phi_s = np.arcsin(E_loss_eV/machine.longitudinal_map.voltages[0])
 z_s = (machine.circumference)*phi_s/(2*np.pi*machine.longitudinal_map.harmonics[0])
-print z_s
+print(z_s)
 
 # BEAM
 # ====
@@ -61,7 +61,7 @@ machine.one_turn_map = [SynchrotronRadiationLongitudinal]+machine.one_turn_map
 plt.close()
 plt.ion()
 
-print '--> Begin tracking...'
+print('--> Begin tracking...')
 
 fig, ((ax1,ax2),(ax3,ax4)) = plt.subplots(2, 2, figsize=(14,10))
         
@@ -82,7 +82,7 @@ mean_dp   = np.zeros(n_turns) + np.NAN
 for i in range(n_turns):
 
     machine.track(bunch)
-    print 'Turn %d/%d'%(i, n_turns)
+    print('Turn %d/%d'%(i, n_turns))
     sigma_x[i]  = bunch.sigma_x()
     mean_x[i]   = bunch.mean_x()
     epsn_x[i]   = bunch.epsn_x()
@@ -159,7 +159,7 @@ for i in range(n_turns):
         #print 'sigma_dp = ',sigma_dp
         #print 'sigma_z = ',sigma_z
         
-print '--> Done.'
+print('--> Done.')
 
 
 

@@ -5,7 +5,7 @@
        specific data to a HDF5 file.
 @copyright CERN
 """
-from __future__ import division
+
 
 import h5py as hp
 import numpy as np
@@ -18,12 +18,10 @@ from ..gpu import gpu_utils as gpu_utils
 from ..general import decorators as decorators
 
 
-class Monitor(Printing):
+class Monitor(Printing, metaclass=ABCMeta):
     """ Abstract base class for monitors. A monitor can request
     statistics data such as mean value and standard deviation and store
     the results in an HDF5 file. """
-
-    __metaclass__ = ABCMeta
 
     @abstractmethod
     def dump(bunch):
@@ -441,7 +439,7 @@ class ParticleMonitor(Monitor):
         h5file = hp.File(self.filename + '.h5part', 'a')
         h5group = h5file.create_group('Step#' + str(self.i_steps))
         dims = (bunch.macroparticlenumber // self.stride,)
-        dims = bunch.get_coords_n_momenta_dict().values()[0][::self.stride].shape # more robust implementation
+        dims = list(bunch.get_coords_n_momenta_dict().values())[0][::self.stride].shape # more robust implementation
 
         # resorting_indices = np.argsort(bunch.id)[::self.stride]
         all_quantities = {}
@@ -458,7 +456,7 @@ class ParticleMonitor(Monitor):
         if arrays_dict is not None:
             all_quantities.update(arrays_dict)
 
-        for quant in all_quantities.keys():
+        for quant in list(all_quantities.keys()):
             quant_values = all_quantities[quant]
             h5group.create_dataset(quant, shape=dims, compression='gzip',
                 compression_opts=9, dtype=quant_values.dtype)
